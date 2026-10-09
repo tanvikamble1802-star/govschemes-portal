@@ -1,82 +1,66 @@
 export interface UserProfile {
   name: string;
-  age: number | string;
+  age: string;
   gender: string;
   state: string;
   district: string;
   category: string;
   disability: string;
   minority: string;
+  locationType: string;
+  education: string;
   occupation: string;
   businessName?: string;
-  businessStage: string;
-  businessType?: string;
+  businessStage?: string;
   yearsInBusiness?: string;
-  annualIncome: number | string;
+  annualIncome: string;
   turnover?: string;
   employmentStatus: string;
-  education: string;
-  locationType: string;
-  selectedLanguage: "en" | "hi" | "mr";
+  selectedLanguage?: string;
   profileCreated: boolean;
-  createdAt?: string;
-  updatedAt?: string;
 }
 
-const STORAGE_KEY = "govschemes_user_profile";
-const PROFILE_CREATED_KEY = "govschemes_profile_created";
+const PROFILE_STORAGE_KEY = "userProfile";
 
-export function getStoredProfile(): UserProfile | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    if (!data) return null;
-    return JSON.parse(data) as UserProfile;
-  } catch (error) {
-    console.error("Failed to read user profile from storage:", error);
-    return null;
-  }
-}
-
+/**
+ * Saves the user profile securely to localStorage.
+ */
 export function saveStoredProfile(profile: UserProfile): void {
-  if (typeof window === "undefined") return;
-  try {
-    const updatedProfile: UserProfile = {
-      ...profile,
-      profileCreated: true,
-      updatedAt: new Date().toISOString(),
-      createdAt: profile.createdAt || new Date().toISOString(),
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedProfile));
-    localStorage.setItem(PROFILE_CREATED_KEY, "true");
-    // Also sync preferred language
-    if (updatedProfile.selectedLanguage) {
-      localStorage.setItem("govschemes_language", updatedProfile.selectedLanguage);
+  if (typeof window !== "undefined") {
+    try {
+      localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+    } catch (error) {
+      console.error("Failed to save profile to localStorage:", error);
     }
-    // Dispatch custom event for reactive UI updates
-    window.dispatchEvent(new Event("govschemes_profile_updated"));
-  } catch (error) {
-    console.error("Failed to save user profile to storage:", error);
   }
 }
 
-export function isProfileCreated(): boolean {
-  if (typeof window === "undefined") return false;
-  try {
-    const flag = localStorage.getItem(PROFILE_CREATED_KEY);
-    return flag === "true";
-  } catch {
-    return false;
+/**
+ * Loads the user profile from localStorage if it exists.
+ */
+export function getStoredProfile(): UserProfile | null {
+  if (typeof window !== "undefined") {
+    try {
+      const saved = localStorage.getItem(PROFILE_STORAGE_KEY);
+      if (saved) {
+        return JSON.parse(saved) as UserProfile;
+      }
+    } catch (error) {
+      console.error("Failed to parse profile from localStorage:", error);
+    }
   }
+  return null;
 }
 
+/**
+ * Clears the stored user profile (useful for resetting/logging out).
+ */
 export function clearStoredProfile(): void {
-  if (typeof window === "undefined") return;
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem(PROFILE_CREATED_KEY);
-    window.dispatchEvent(new Event("govschemes_profile_updated"));
-  } catch (error) {
-    console.error("Failed to clear profile from storage:", error);
+  if (typeof window !== "undefined") {
+    try {
+      localStorage.removeItem(PROFILE_STORAGE_KEY);
+    } catch (error) {
+      console.error("Failed to clear profile from localStorage:", error);
+    }
   }
 }

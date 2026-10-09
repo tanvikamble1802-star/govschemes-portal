@@ -46,8 +46,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       } catch {}
     };
 
+    const handleLanguageUpdate = (e: Event) => {
+      const customEvent = e as CustomEvent<Language>;
+      if (customEvent.detail && ["en", "hi", "mr"].includes(customEvent.detail)) {
+        setLanguageState(customEvent.detail);
+      }
+    };
+
     window.addEventListener("govschemes_profile_updated", handleProfileUpdate);
-    return () => window.removeEventListener("govschemes_profile_updated", handleProfileUpdate);
+    window.addEventListener("govschemes_language_updated", handleLanguageUpdate);
+    return () => {
+      window.removeEventListener("govschemes_profile_updated", handleProfileUpdate);
+      window.removeEventListener("govschemes_language_updated", handleLanguageUpdate);
+    };
   }, []);
 
   const setLanguage = (lang: Language) => {
@@ -59,8 +70,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       if (profileData) {
         const parsed = JSON.parse(profileData);
         parsed.selectedLanguage = lang;
+        parsed.language = lang === "hi" ? "हिंदी" : lang === "mr" ? "मराठी" : "English";
         localStorage.setItem("govschemes_user_profile", JSON.stringify(parsed));
       }
+      window.dispatchEvent(new CustomEvent("govschemes_language_updated", { detail: lang }));
     } catch (err) {
       console.error("Failed to store language preference:", err);
     }

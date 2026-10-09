@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../lib/LanguageContext";
-import { Language } from "../lib/translations";
+import { Language, getLocalizedStateName } from "../lib/translations";
 import { UserProfile, clearStoredProfile, saveStoredProfile } from "../lib/profileStorage";
 
 interface ProfileModalProps {
@@ -23,6 +23,17 @@ export default function ProfileModal({
   const { t, language, setLanguage } = useLanguage();
   const [activeTab, setActiveTab] = useState<"profile" | "preferences">("profile");
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+
+  // Close on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -51,7 +62,12 @@ export default function ProfileModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="profile-modal-title"
+    >
       <div
         className="bg-white rounded-2xl max-w-xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-gray-100 animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
@@ -63,18 +79,18 @@ export default function ProfileModal({
               {profile?.name ? profile.name.charAt(0).toUpperCase() : "U"}
             </div>
             <div>
-              <h2 className="font-bold text-lg leading-tight">
+              <h2 id="profile-modal-title" className="font-bold text-lg leading-tight">
                 {profile?.name || t.myProfile}
               </h2>
               <p className="text-xs text-blue-200">
-                {profile?.state ? `${profile.state} • ${profile.category || ""}` : t.govSubtitle}
+                {profile?.state ? `${getLocalizedStateName(profile.state, language)} • ${profile.category || ""}` : t.govSubtitle}
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-white transition cursor-pointer"
+            className="w-8 h-8 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-white transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             ✕
@@ -86,7 +102,7 @@ export default function ProfileModal({
           <button
             type="button"
             onClick={() => setActiveTab("profile")}
-            className={`py-3 px-4 text-sm font-semibold border-b-2 cursor-pointer transition ${
+            className={`py-3 px-4 text-sm font-semibold border-b-2 cursor-pointer transition-colors ${
               activeTab === "profile"
                 ? "border-orange-500 text-orange-600 bg-white"
                 : "border-transparent text-gray-500 hover:text-gray-800"
@@ -97,7 +113,7 @@ export default function ProfileModal({
           <button
             type="button"
             onClick={() => setActiveTab("preferences")}
-            className={`py-3 px-4 text-sm font-semibold border-b-2 cursor-pointer transition ${
+            className={`py-3 px-4 text-sm font-semibold border-b-2 cursor-pointer transition-colors ${
               activeTab === "preferences"
                 ? "border-orange-500 text-orange-600 bg-white"
                 : "border-transparent text-gray-500 hover:text-gray-800"
@@ -124,7 +140,7 @@ export default function ProfileModal({
                 </div>
                 <div>
                   <span className="text-gray-500 block text-xs">{t.labelState} & {t.labelDistrict}</span>
-                  <span className="font-semibold text-gray-900">{profile.district}, {profile.state}</span>
+                  <span className="font-semibold text-gray-900">{profile.district}, {getLocalizedStateName(profile.state, language) || profile.state}</span>
                 </div>
                 <div>
                   <span className="text-gray-500 block text-xs">{t.labelCategory}</span>
@@ -157,7 +173,7 @@ export default function ProfileModal({
                     onClose();
                     onEditProfile();
                   }}
-                  className="bg-blue-900 hover:bg-blue-800 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition flex items-center gap-1.5 cursor-pointer"
+                  className="bg-blue-900 hover:bg-blue-800 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -188,7 +204,7 @@ export default function ProfileModal({
                       key={item.code}
                       type="button"
                       onClick={() => handleLanguageChange(item.code)}
-                      className={`p-3 rounded-xl border text-center transition cursor-pointer ${
+                      className={`p-3 rounded-xl border text-center transition-all cursor-pointer ${
                         language === item.code
                           ? "border-orange-500 bg-orange-50 font-bold text-orange-700 ring-2 ring-orange-200"
                           : "border-gray-200 hover:border-gray-300 text-gray-800"
@@ -215,7 +231,7 @@ export default function ProfileModal({
                     <button
                       type="button"
                       onClick={() => setShowResetConfirm(true)}
-                      className="px-4 py-2 border border-red-300 text-red-600 hover:bg-red-50 text-xs font-semibold rounded-lg transition cursor-pointer"
+                      className="px-4 py-2 border border-red-300 text-red-600 hover:bg-red-50 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
                     >
                       Reset
                     </button>
@@ -224,14 +240,14 @@ export default function ProfileModal({
                       <button
                         type="button"
                         onClick={handleReset}
-                        className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition cursor-pointer"
+                        className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
                       >
                         Confirm
                       </button>
                       <button
                         type="button"
                         onClick={() => setShowResetConfirm(false)}
-                        className="px-3 py-1.5 border border-gray-300 text-gray-600 text-xs font-semibold rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                        className="px-3 py-1.5 border border-gray-300 text-gray-600 text-xs font-semibold rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
                       >
                         Cancel
                       </button>
@@ -253,7 +269,7 @@ export default function ProfileModal({
           <button
             type="button"
             onClick={onClose}
-            className="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold rounded-full transition cursor-pointer"
+            className="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold rounded-full transition-colors cursor-pointer"
           >
             {t.close}
           </button>

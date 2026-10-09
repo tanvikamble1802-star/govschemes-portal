@@ -46,6 +46,10 @@ export default function LoadingResults() {
     };
   }, [router]);
 
+  const profileSummary = profile?.name
+    ? `${profile.name} • ${profile.category || "All Categories"}, ${getLocalizedStateName(profile.state, language) || profile.state || "India"}`
+    : "Verified Entrepreneur";
+
   const stages = [
     {
       id: 1,
