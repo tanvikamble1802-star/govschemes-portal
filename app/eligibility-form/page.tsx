@@ -352,7 +352,9 @@ export default function EligibilityFormPage() {
             <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 space-y-3 text-xs">
               <div>
                 <span className="font-bold text-gray-900">Personal Information:</span>
-                <p className="text-gray-600">{formData.fullName || "N/A"}, {formData.age || "N/A"} yrs, {formData.gender || "N/A"} - {formData.district || "N/A"}, {formData.state || "N/A"}</p>
+                <p className="text-gray-600">
+                  {formData.fullName || "N/A"}, {formData.age || "N/A"} yrs, {formData.gender || "N/A"} | {formData.district || "N/A"}, {formData.state || "N/A"}
+                </p>
               </div>
               <div>
                 <span className="font-bold text-gray-900">Social Background:</span>
