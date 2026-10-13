@@ -28,10 +28,7 @@ export default function Home() {
       {/* Why GovSchemes / Help section */}
       <section id="why-govschemes" className="max-w-4xl mx-auto mt-16 pt-12 border-t border-gray-200">
         <div className="text-center mb-10">
-          <span className="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
-            SIH26092
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-3">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-950">
             {t.whyGovSchemes || "Why Use GovSchemes?"}
           </h2>
         </div>

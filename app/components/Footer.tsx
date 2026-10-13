@@ -18,12 +18,9 @@ export default function Footer() {
               <span className="font-extrabold text-lg tracking-tight text-white">
                 GovSchemes
               </span>
-              <span className="rounded-full bg-blue-900 border border-blue-800 px-2 py-0.5 text-[10px] font-semibold text-blue-200">
-                SIH26092
-              </span>
             </div>
             <p className="mt-2 text-xs text-blue-200 max-w-md leading-relaxed">
-              {t.footerTagline || "AI-driven government schemes matching portal for marginalized entrepreneurs across India."}
+              {t.footerTagline || "AI-driven government schemes discovery and matching portal across India."}
             </p>
           </div>
 
@@ -51,7 +48,7 @@ export default function Footer() {
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-blue-300">
           <p>
-            {t.footerText || `© ${new Date().getFullYear()} GovSchemes (SIH26092). All rights reserved.`}
+            {t.footerText || `© ${new Date().getFullYear()} GovSchemes. All rights reserved.`}
           </p>
           <p className="text-[11px] text-blue-400 text-center sm:text-right max-w-xl">
             {t.footerDisclaimer || "Guidance prototype for eligible scheme identification. Applications are submitted directly to official government portals."}

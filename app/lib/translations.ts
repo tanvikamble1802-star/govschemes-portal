@@ -9,8 +9,8 @@ export const translations = {
     navHelp: "Help",
     navProfile: "My Profile",
     navPreferences: "Preferences",
-    govSubtitle: "Government Schemes Portal for Marginalized Entrepreneurs",
-    footerText: "© 2026 GovSchemes (SIH26092). All rights reserved.",
+    govSubtitle: "Government Schemes Portal",
+    footerText: "© 2026 GovSchemes. All rights reserved.",
 
     // Onboarding Frame
     onboardingTitle: "Create Your GovSchemes Profile",
@@ -332,7 +332,7 @@ export const translations = {
     clearedConversationGeneral: "Conversation cleared. How can I help you understand government schemes today?",
     greetingScheme: "Hello! I'm your Scheme Assistant. I see you're inquiring about {name} ({type}). I can help you understand its eligibility requirements, required documents checklist, financial benefits, and step-by-step application process.\n\nWhat would you like to know about this scheme?",
     greetingGeneral: "Hello! I'm your Scheme Assistant. I can help you understand government schemes, eligibility requirements, documents, benefits and application steps.\n\nWhat would you like help with?",
-    footerTagline: "AI-driven government schemes matching portal for marginalized entrepreneurs across India.",
+    footerTagline: "AI-driven government schemes discovery and matching portal across India.",
     footerDisclaimer: "Guidance prototype for eligible scheme identification. Applications are submitted directly to official government portals.",
     homeTitle: "Government Schemes Portal",
     homeSubtitle: "Complete your onboarding to find eligible welfare schemes tailored for you.",
@@ -370,8 +370,8 @@ export const translations = {
     navHelp: "सहायता",
     navProfile: "मेरी प्रोफाइल",
     navPreferences: "प्राथमिकताएं",
-    govSubtitle: "वंचित एवं हाशिए पर स्थित उद्यमियों हेतु सरकारी योजना पोर्टल",
-    footerText: "© 2026 GovSchemes (SIH26092)। सर्वाधिकार सुरक्षित।",
+    govSubtitle: "सरकारी योजना पोर्टल",
+    footerText: "© 2026 GovSchemes। सर्वाधिकार सुरक्षित।",
 
     // Onboarding Frame
     onboardingTitle: "अपनी GovSchemes प्रोफाइल बनाएं",
@@ -693,7 +693,7 @@ export const translations = {
     clearedConversationGeneral: "बातचीत साफ़ कर दी गई। आज मैं सरकारी योजनाओं को समझने में आपकी क्या मदद कर सकता हूँ?",
     greetingScheme: "नमस्ते! मैं आपका योजना सहायक हूँ। मैं देख रहा हूँ कि आप {name} ({type}) के बारे में पूछ रहे हैं। मैं पात्रता, आवश्यक दस्तावेज चेकलिस्ट, लाभ और आवेदन प्रक्रिया को समझने में आपकी सहायता कर सकता हूँ।\n\nआप इस योजना के बारे में क्या जानना चाहते हैं?",
     greetingGeneral: "नमस्ते! मैं आपका योजना सहायक हूँ। मैं सरकारी योजनाओं, पात्रता आवश्यकताओं, दस्तावेजों, लाभों और आवेदन चरणों को समझने में आपकी सहायता कर सकता हूँ।\n\nआपको किस विषय में सहायता चाहिए?",
-    footerTagline: "अखिल भारतीय स्तर पर वंचित एवं हाशिए पर स्थित उद्यमियों के लिए एआई-संचालित सरकारी योजना मैचिंग पोर्टल।",
+    footerTagline: "अखिल भारतीय स्तर पर नागरिकों एवं उद्यमियों हेतु एआई-संचालित सरकारी योजना मैचिंग पोर्टल।",
     footerDisclaimer: "पात्र सरकारी योजनाओं की पहचान हेतु मार्गदर्शन प्रोटोटाइप। वास्तविक आवेदन आधिकारिक सरकारी पोर्टलों पर सीधे जमा किए जाते हैं।",
     homeTitle: "सरकारी योजना पोर्टल",
     homeSubtitle: "अपने व्यवसाय के अनुकूल सरकारी कल्याणकारी योजनाओं को खोजने के लिए अपनी प्रोफाइल पूर्ण करें।",
@@ -731,8 +731,8 @@ export const translations = {
     navHelp: "मदत",
     navProfile: "माझी प्रोफाइल",
     navPreferences: "प्राधान्ये",
-    govSubtitle: "उपेक्षित आणि वंचित उद्योजकांसाठी शासकीय योजना पोर्टल",
-    footerText: "© 2026 GovSchemes (SIH26092). सर्व हक्क राखीव.",
+    govSubtitle: "शासकीय योजना पोर्टल",
+    footerText: "© 2026 GovSchemes. सर्व हक्क राखीव.",
 
     // Onboarding Frame
     onboardingTitle: "आपली GovSchemes प्रोफाइल तयार करा",
@@ -1054,7 +1054,7 @@ export const translations = {
     clearedConversationGeneral: "संवाद साफ केला. आज शासकीय योजना समजून घेण्यासाठी मी तुम्हाला कशी मदत करू?",
     greetingScheme: "नमस्कार! मी तुमचा योजना साहाय्यक आहे. आपण {name} ({type}) बाबत माहिती विचारत आहात. मी पात्रता अटी, आवश्यक कागदपत्रांची यादी, आर्थिक फायदे आणि अर्ज प्रक्रिया समजून घेण्यात मदत करू शकतो.\n\nआपल्याला या योजनेबद्दल काय जाणून घ्यायचे आहे?",
     greetingGeneral: "नमस्कार! मी तुमचा योजना साहाय्यक आहे. मी शासकीय योजना, पात्रता अटी, कागदपत्रे, फायदे आणि अर्ज प्रक्रिया समजून घेण्यात मदत करू शकतो.\n\nआपल्याला कशाबद्दल मदत हवी आहे?",
-    footerTagline: "भारतभरातील वंचित आणि उपेक्षित घटकांतील सूक्ष्म उद्योजकांसाठी एआय-चालित शासकीय योजना पोर्टल.",
+    footerTagline: "सर्व नागरिकांसाठी आणि उद्योजकांसाठी एआय-चालित शासकीय योजना पोर्टल.",
     footerDisclaimer: "पात्र शासकीय योजनांच्या शोधासाठी मार्गदर्शन मॉडेल. अधिकृत अर्ज थेट शासनाच्या अधिकृत संकेतस्थळावर सादर केले जातात.",
     homeTitle: "शासकीय योजना पोर्टल",
     homeSubtitle: "आपल्यासाठी उपयुक्त कल्याणकारी योजना शोधण्यासाठी आपली नोंदणी पूर्ण करा.",

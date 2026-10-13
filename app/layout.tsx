@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GovSchemes | AI-Driven Scheme Matching for Marginalized Entrepreneurs",
+  title: "GovSchemes | AI-Driven Government Scheme Matching Portal",
   description:
-    "SIH26092 - Discover and apply for the exact government schemes you are eligible for in seconds.",
+    "Discover and apply for the exact government schemes you are eligible for in seconds.",
 };
 
 export default function RootLayout({

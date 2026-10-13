@@ -75,23 +75,13 @@ export default function Navbar() {
     <>
       <nav className="bg-blue-900 text-white px-4 sm:px-6 py-3.5 flex justify-between items-center shadow-md sticky top-0 z-40">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
           <div className="bg-white rounded-full w-9 h-9 flex items-center justify-center text-blue-900 font-extrabold text-sm shadow-xs group-hover:scale-105 transition-transform">
             GS
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="font-extrabold text-lg sm:text-xl leading-tight tracking-tight">
-                GovSchemes
-              </h1>
-              <span className="rounded-full bg-blue-800 border border-blue-700 px-1.5 py-0.2 text-[9px] font-bold text-blue-200">
-                SIH26092
-              </span>
-            </div>
-            <p className="text-[11px] text-blue-200 leading-tight">
-              {t.govSubtitle || "Government Schemes Portal for Marginalized Entrepreneurs"}
-            </p>
-          </div>
+          <h1 className="font-extrabold text-lg sm:text-xl leading-none tracking-tight text-white">
+            GovSchemes
+          </h1>
         </Link>
 
         {/* Desktop Links */}
